@@ -1,1176 +1,1285 @@
 /* =========================================================
-   NIMEGAMI — EXPLORE JAVASCRIPT
-========================================================= */
+   NIMEGAMI — EXPLORE.JS
+   ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+/* =========================================================
+   01. ANIME DATA
+   ========================================================= */
 
-    /* =====================================================
-       ANIME DATA
-    ===================================================== */
+const animeData = [
+    {
+        id: 1,
+        title: "Demon Slayer",
+        japaneseTitle: "Kimetsu no Yaiba",
+        year: 2019,
+        genre: ["Action", "Fantasy", "Adventure"],
+        status: "Finished",
+        rating: 8.6,
+        episodes: 55,
+        type: "TV",
+        description:
+            "A young boy joins the Demon Slayer Corps after his family is attacked by demons, determined to save his sister and defeat the powerful demons threatening humanity.",
+        image: "images/anime/demon-slayer.jpg"
+    },
 
-    const animeData = [
-        {
-            title: "Moonlit Memories",
-            genre: "Romance",
-            genres: ["Romance", "Drama", "Fantasy"],
-            rating: "9.1",
-            year: "2024",
-            mood: ["romance", "sad", "comfort"],
-            description:
-                "A beautiful story about friendship, memories, dreams, and a love that slowly changes everything."
-        },
+    {
+        id: 2,
+        title: "Jujutsu Kaisen",
+        japaneseTitle: "Jujutsu Kaisen",
+        year: 2020,
+        genre: ["Action", "Fantasy", "Supernatural"],
+        status: "Ongoing",
+        rating: 8.7,
+        episodes: 47,
+        type: "TV",
+        description:
+            "Yuji Itadori enters the dangerous world of jujutsu sorcery after becoming involved with a powerful cursed object.",
+        image: "images/anime/jujutsu-kaisen.jpg"
+    },
 
-        {
-            title: "Crimson Horizon",
-            genre: "Action",
-            genres: ["Action", "Adventure", "Fantasy"],
-            rating: "8.8",
-            year: "2023",
-            mood: ["action"],
-            description:
-                "A thrilling adventure where fearless heroes face powerful enemies and fight for a world worth protecting."
-        },
+    {
+        id: 3,
+        title: "Attack on Titan",
+        japaneseTitle: "Shingeki no Kyojin",
+        year: 2013,
+        genre: ["Action", "Drama", "Fantasy"],
+        status: "Finished",
+        rating: 9.1,
+        episodes: 89,
+        type: "TV",
+        description:
+            "Humanity fights for survival behind enormous walls while mysterious Titans threaten everything they know.",
+        image: "images/anime/attack-on-titan.jpg"
+    },
 
-        {
-            title: "Dreaming Sakura",
-            genre: "Slice of Life",
-            genres: ["Slice of Life", "Romance"],
-            rating: "8.7",
-            year: "2022",
-            mood: ["happy", "romance", "comfort"],
-            description:
-                "A warm and gentle story about friendship, school life, dreams, and the little moments that become unforgettable."
-        },
+    {
+        id: 4,
+        title: "My Hero Academia",
+        japaneseTitle: "Boku no Hero Academia",
+        year: 2016,
+        genre: ["Action", "School", "Superhero"],
+        status: "Finished",
+        rating: 8.0,
+        episodes: 170,
+        type: "TV",
+        description:
+            "In a world where almost everyone has superpowers, a powerless boy dreams of becoming a great hero.",
+        image: "images/anime/my-hero-academia.jpg"
+    },
 
-        {
-            title: "Shadow of Tomorrow",
-            genre: "Mystery",
-            genres: ["Mystery", "Action", "Sci-Fi"],
-            rating: "9.0",
-            year: "2025",
-            mood: ["mystery", "action"],
-            description:
-                "A mysterious journey through secrets, strange discoveries, and a future that may not be what it seems."
-        },
+    {
+        id: 5,
+        title: "One Piece",
+        japaneseTitle: "One Piece",
+        year: 1999,
+        genre: ["Action", "Adventure", "Fantasy"],
+        status: "Ongoing",
+        rating: 9.0,
+        episodes: 1100,
+        type: "TV",
+        description:
+            "Monkey D. Luffy and his crew travel across the Grand Line in search of the legendary treasure known as the One Piece.",
+        image: "images/anime/one-piece.jpg"
+    },
 
-        {
-            title: "Whispers of Eden",
-            genre: "Fantasy",
-            genres: ["Fantasy", "Adventure", "Drama"],
-            rating: "8.9",
-            year: "2021",
-            mood: ["comfort", "sad"],
-            description:
-                "A fantasy adventure about finding hope in a forgotten world filled with ancient secrets."
-        },
+    {
+        id: 6,
+        title: "Spy x Family",
+        japaneseTitle: "Spy x Family",
+        year: 2022,
+        genre: ["Comedy", "Action", "Family"],
+        status: "Ongoing",
+        rating: 8.5,
+        episodes: 50,
+        type: "TV",
+        description:
+            "A spy, an assassin, and a telepath create a fake family while secretly hiding their unusual identities from each other.",
+        image: "images/anime/spy-family.jpg"
+    },
 
-        {
-            title: "Summer After Rain",
-            genre: "Romance",
-            genres: ["Romance", "Slice of Life"],
-            rating: "8.6",
-            year: "2020",
-            mood: ["romance", "happy", "comfort"],
-            description:
-                "Two friends discover that growing up means learning to appreciate the people who have always been there."
+    {
+        id: 7,
+        title: "Haikyuu!!",
+        japaneseTitle: "Haikyuu!!",
+        year: 2014,
+        genre: ["Sports", "Comedy", "School"],
+        status: "Finished",
+        rating: 8.7,
+        episodes: 85,
+        type: "TV",
+        description:
+            "A short but determined volleyball player works with his teammates to reach the top of Japanese high school volleyball.",
+        image: "images/anime/haikyuu.jpg"
+    },
+
+    {
+        id: 8,
+        title: "Your Name",
+        japaneseTitle: "Kimi no Na wa",
+        year: 2016,
+        genre: ["Romance", "Drama", "Fantasy"],
+        status: "Finished",
+        rating: 8.8,
+        episodes: 1,
+        type: "Movie",
+        description:
+            "Two teenagers mysteriously begin switching bodies and discover a connection that reaches far beyond their ordinary lives.",
+        image: "images/anime/your-name.jpg"
+    },
+
+    {
+        id: 9,
+        title: "Frieren",
+        japaneseTitle: "Sousou no Frieren",
+        year: 2023,
+        genre: ["Fantasy", "Adventure", "Drama"],
+        status: "Ongoing",
+        rating: 9.2,
+        episodes: 28,
+        type: "TV",
+        description:
+            "After defeating the Demon King, an elf mage begins a journey to understand humanity and the meaning of the memories she left behind.",
+        image: "images/anime/frieren.jpg"
+    },
+
+    {
+        id: 10,
+        title: "Naruto",
+        japaneseTitle: "Naruto",
+        year: 2002,
+        genre: ["Action", "Adventure", "Comedy"],
+        status: "Finished",
+        rating: 8.4,
+        episodes: 220,
+        type: "TV",
+        description:
+            "A young ninja who dreams of becoming Hokage works hard to gain recognition and protect the people he cares about.",
+        image: "images/anime/naruto.jpg"
+    },
+
+    {
+        id: 11,
+        title: "Blue Lock",
+        japaneseTitle: "Blue Lock",
+        year: 2022,
+        genre: ["Sports", "Action", "Drama"],
+        status: "Ongoing",
+        rating: 8.2,
+        episodes: 38,
+        type: "TV",
+        description:
+            "Hundreds of young football players compete in an intense training program designed to create Japan's ultimate striker.",
+        image: "images/anime/blue-lock.jpg"
+    },
+
+    {
+        id: 12,
+        title: "Solo Leveling",
+        japaneseTitle: "Ore dake Level Up na Ken",
+        year: 2024,
+        genre: ["Action", "Fantasy", "Adventure"],
+        status: "Ongoing",
+        rating: 8.8,
+        episodes: 25,
+        type: "TV",
+        description:
+            "Once considered the weakest hunter, Sung Jin-Woo gains a mysterious ability that allows him to level up beyond ordinary limits.",
+        image: "images/anime/solo-leveling.jpg"
+    }
+];
+
+
+/* =========================================================
+   02. DOM ELEMENTS
+   ========================================================= */
+
+const animeGrid =
+    document.querySelector(".anime-grid");
+
+const searchInput =
+    document.querySelector("#animeSearch") ||
+    document.querySelector(".search-box input");
+
+const genreFilter =
+    document.querySelector("#genreFilter");
+
+const yearFilter =
+    document.querySelector("#yearFilter");
+
+const sortFilter =
+    document.querySelector("#sortFilter");
+
+const resultCount =
+    document.querySelector("#resultCount");
+
+const emptyState =
+    document.querySelector("#emptyState");
+
+
+/* =========================================================
+   03. FAVORITES
+   ========================================================= */
+
+let favorites =
+    JSON.parse(localStorage.getItem("nimegamiFavorites")) || [];
+
+
+/* =========================================================
+   04. CURRENT FILTERS
+   ========================================================= */
+
+let currentAnimeList = [...animeData];
+
+
+/* =========================================================
+   05. CREATE ANIME CARD
+   ========================================================= */
+
+function createAnimeCard(anime, index) {
+
+    const isFavorite =
+        favorites.includes(anime.id);
+
+    const genreText =
+        anime.genre.slice(0, 2).join(" • ");
+
+    return `
+        <article
+            class="anime-card"
+            data-id="${anime.id}"
+        >
+
+            <div
+                class="anime-image"
+                style="
+                    background-image:
+                    linear-gradient(
+                        to top,
+                        rgba(20,14,10,0.75),
+                        rgba(20,14,10,0.05)
+                    ),
+                    url('${anime.image}');
+                "
+            >
+
+                <div class="ranking">
+                    #${String(index + 1).padStart(2, "0")}
+                </div>
+
+                <button
+                    class="favorite-btn ${isFavorite ? "active" : ""}"
+                    data-favorite="${anime.id}"
+                    aria-label="Add ${anime.title} to favorites"
+                >
+                    <i class="${isFavorite ? "fas" : "far"} fa-heart"></i>
+                </button>
+
+                <div class="anime-overlay">
+
+                    <div class="anime-rating">
+                        <i class="fas fa-star"></i>
+                        ${anime.rating}
+                    </div>
+
+                    <h3>${anime.title}</h3>
+
+                    <p>
+                        ${anime.year}
+                        &nbsp; • &nbsp;
+                        ${genreText}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </article>
+    `;
+}
+
+
+/* =========================================================
+   06. RENDER ANIME
+   ========================================================= */
+
+function renderAnime(list = currentAnimeList) {
+
+    if (!animeGrid) return;
+
+    if (list.length === 0) {
+
+        animeGrid.innerHTML = "";
+
+        if (emptyState) {
+            emptyState.style.display = "block";
         }
-    ];
 
+        updateResultCount(0);
 
-    /* =====================================================
-       ELEMENTS
-    ===================================================== */
-
-    const searchModal =
-        document.getElementById("searchModal");
-
-    const openSearch =
-        document.getElementById("openSearch");
-
-    const closeSearch =
-        document.getElementById("closeSearch");
-
-    const animeSearch =
-        document.getElementById("animeSearch");
-
-    const searchResults =
-        document.getElementById("searchResults");
-
-    const recommendationModal =
-        document.getElementById("recommendationModal");
-
-    const closeRecommendation =
-        document.getElementById("closeRecommendation");
-
-    const recommendationTitle =
-        document.getElementById("recommendationTitle");
-
-    const recommendationMeta =
-        document.getElementById("recommendationMeta");
-
-    const recommendationRating =
-        document.getElementById("recommendationRating");
-
-    const recommendationDescription =
-        document.getElementById("recommendationDescription");
-
-    const heroSurprise =
-        document.getElementById("heroSurprise");
-
-    const navSurprise =
-        document.getElementById("navSurprise");
-
-    const bigSurprise =
-        document.getElementById("bigSurprise");
-
-    const recommendationAction =
-        document.getElementById("recommendationAction");
-
-
-    /* =====================================================
-       FAVORITES
-    ===================================================== */
-
-    let favorites =
-        JSON.parse(
-            localStorage.getItem("nimegamiFavorites")
-        ) || [];
-
-
-    function saveFavorites() {
-
-        localStorage.setItem(
-            "nimegamiFavorites",
-            JSON.stringify(favorites)
-        );
-
+        return;
     }
 
-
-    function updateFavoriteButton(button) {
-
-        const animeName =
-            button.dataset.anime;
-
-        const icon =
-            button.querySelector("i");
-
-        const isFavorite =
-            favorites.includes(animeName);
-
-
-        if (isFavorite) {
-
-            button.classList.add("active");
-
-            icon.classList.remove(
-                "fa-regular"
-            );
-
-            icon.classList.add(
-                "fa-solid"
-            );
-
-        } else {
-
-            button.classList.remove("active");
-
-            icon.classList.remove(
-                "fa-solid"
-            );
-
-            icon.classList.add(
-                "fa-regular"
-            );
-
-        }
-
+    if (emptyState) {
+        emptyState.style.display = "none";
     }
 
+    animeGrid.innerHTML =
+        list
+            .map((anime, index) =>
+                createAnimeCard(anime, index)
+            )
+            .join("");
 
-    function initializeFavorites() {
+    updateResultCount(list.length);
 
-        const buttons =
-            document.querySelectorAll(
-                ".favorite-btn"
+    attachCardEvents();
+}
+
+
+/* =========================================================
+   07. RESULT COUNT
+   ========================================================= */
+
+function updateResultCount(count) {
+
+    if (!resultCount) return;
+
+    resultCount.textContent =
+        `${count} anime${count !== 1 ? "s" : ""} found`;
+}
+
+
+/* =========================================================
+   08. SEARCH
+   ========================================================= */
+
+function searchAnime(keyword) {
+
+    const searchTerm =
+        keyword.trim().toLowerCase();
+
+    let filtered =
+        animeData.filter(anime => {
+
+            const title =
+                anime.title.toLowerCase();
+
+            const japaneseTitle =
+                anime.japaneseTitle.toLowerCase();
+
+            const genres =
+                anime.genre.join(" ").toLowerCase();
+
+            return (
+                title.includes(searchTerm) ||
+                japaneseTitle.includes(searchTerm) ||
+                genres.includes(searchTerm)
             );
-
-        buttons.forEach(button => {
-
-            updateFavoriteButton(button);
-
-            button.addEventListener(
-                "click",
-                event => {
-
-                    event.stopPropagation();
-
-                    const animeName =
-                        button.dataset.anime;
-
-
-                    if (
-                        favorites.includes(
-                            animeName
-                        )
-                    ) {
-
-                        favorites =
-                            favorites.filter(
-                                item =>
-                                    item !== animeName
-                            );
-
-                        showToast(
-                            `${animeName} removed from favorites.`
-                        );
-
-                    } else {
-
-                        favorites.push(
-                            animeName
-                        );
-
-                        showToast(
-                            `${animeName} added to favorites ❤️`
-                        );
-
-                    }
-
-
-                    saveFavorites();
-
-                    updateFavoriteButton(
-                        button
-                    );
-
-                }
-            );
-
         });
 
+    filtered = applyFilters(filtered);
+
+    currentAnimeList = filtered;
+
+    renderAnime(filtered);
+}
+
+
+/* =========================================================
+   09. APPLY FILTERS
+   ========================================================= */
+
+function applyFilters(list) {
+
+    let filtered = [...list];
+
+    /* GENRE */
+
+    if (
+        genreFilter &&
+        genreFilter.value &&
+        genreFilter.value !== "all"
+    ) {
+
+        filtered =
+            filtered.filter(anime =>
+                anime.genre.includes(
+                    genreFilter.value
+                )
+            );
     }
 
 
-    initializeFavorites();
+    /* YEAR */
+
+    if (
+        yearFilter &&
+        yearFilter.value &&
+        yearFilter.value !== "all"
+    ) {
+
+        const selectedYear =
+            yearFilter.value;
+
+        filtered =
+            filtered.filter(anime =>
+                String(anime.year) === selectedYear
+            );
+    }
 
 
+    /* SORT */
 
-    /* =====================================================
-       SEARCH MODAL
-    ===================================================== */
+    if (sortFilter) {
 
-    function openSearchModal() {
+        const sort =
+            sortFilter.value;
 
-        if (!searchModal) return;
+        if (sort === "rating") {
 
-        searchModal.classList.add("show");
+            filtered.sort(
+                (a, b) =>
+                    b.rating - a.rating
+            );
+        }
 
-        searchModal.setAttribute(
-            "aria-hidden",
-            "false"
+        else if (sort === "newest") {
+
+            filtered.sort(
+                (a, b) =>
+                    b.year - a.year
+            );
+        }
+
+        else if (sort === "oldest") {
+
+            filtered.sort(
+                (a, b) =>
+                    a.year - b.year
+            );
+        }
+
+        else if (sort === "title") {
+
+            filtered.sort(
+                (a, b) =>
+                    a.title.localeCompare(
+                        b.title
+                    )
+            );
+        }
+    }
+
+    return filtered;
+}
+
+
+/* =========================================================
+   10. FILTER EVERYTHING
+   ========================================================= */
+
+function filterAnime() {
+
+    const keyword =
+        searchInput
+            ? searchInput.value.toLowerCase().trim()
+            : "";
+
+    let filtered =
+        animeData.filter(anime => {
+
+            if (!keyword) return true;
+
+            return (
+                anime.title
+                    .toLowerCase()
+                    .includes(keyword) ||
+
+                anime.japaneseTitle
+                    .toLowerCase()
+                    .includes(keyword) ||
+
+                anime.genre
+                    .join(" ")
+                    .toLowerCase()
+                    .includes(keyword)
+            );
+        });
+
+    filtered = applyFilters(filtered);
+
+    currentAnimeList = filtered;
+
+    renderAnime(filtered);
+}
+
+
+/* =========================================================
+   11. FAVORITE SYSTEM
+   ========================================================= */
+
+function toggleFavorite(id) {
+
+    id = Number(id);
+
+    if (favorites.includes(id)) {
+
+        favorites =
+            favorites.filter(
+                favoriteId =>
+                    favoriteId !== id
+            );
+
+        showToast("Removed from favorites");
+
+    } else {
+
+        favorites.push(id);
+
+        showToast("Added to favorites ❤️");
+    }
+
+    localStorage.setItem(
+        "nimegamiFavorites",
+        JSON.stringify(favorites)
+    );
+
+    renderAnime(currentAnimeList);
+}
+
+
+/* =========================================================
+   12. CARD EVENTS
+   ========================================================= */
+
+function attachCardEvents() {
+
+    const favoriteButtons =
+        document.querySelectorAll(
+            "[data-favorite]"
         );
 
+    favoriteButtons.forEach(button => {
 
-        setTimeout(() => {
+        button.addEventListener(
+            "click",
+            event => {
 
-            animeSearch?.focus();
+                event.stopPropagation();
 
-        }, 200);
+                const id =
+                    button.dataset.favorite;
 
-    }
+                toggleFavorite(id);
+            }
+        );
+    });
 
 
-    function closeSearchModal() {
-
-        if (!searchModal) return;
-
-        searchModal.classList.remove("show");
-
-        searchModal.setAttribute(
-            "aria-hidden",
-            "true"
+    const animeCards =
+        document.querySelectorAll(
+            ".anime-card"
         );
 
+    animeCards.forEach(card => {
+
+        card.addEventListener(
+            "click",
+            () => {
+
+                const id =
+                    Number(card.dataset.id);
+
+                openAnimeModal(id);
+            }
+        );
+    });
+}
+
+
+/* =========================================================
+   13. ANIME MODAL
+   ========================================================= */
+
+function openAnimeModal(id) {
+
+    const anime =
+        animeData.find(
+            item => item.id === Number(id)
+        );
+
+    if (!anime) return;
+
+    let modal =
+        document.querySelector(
+            "#animeDetailsModal"
+        );
+
+    if (!modal) {
+
+        modal =
+            document.createElement("div");
+
+        modal.id =
+            "animeDetailsModal";
+
+        modal.className =
+            "recommendation-modal";
+
+        document.body.appendChild(modal);
     }
 
 
-    openSearch?.addEventListener(
+    modal.innerHTML = `
+
+        <div class="recommendation-card">
+
+            <button
+                class="close-recommendation"
+                id="closeAnimeModal"
+                aria-label="Close"
+            >
+                <i class="fas fa-times"></i>
+            </button>
+
+
+            <div
+                class="recommendation-poster"
+                style="
+                    background-image:
+                    linear-gradient(
+                        145deg,
+                        rgba(233,135,72,0.25),
+                        rgba(92,57,48,0.45)
+                    ),
+                    url('${anime.image}');
+                    background-size: cover;
+                    background-position: center;
+                "
+            >
+
+                <div class="poster-placeholder">
+                    ${anime.title}
+                </div>
+
+            </div>
+
+
+            <div class="recommendation-info">
+
+                <div class="eyebrow">
+                    <span>✦</span>
+                    NIMEGAMI PICK
+                </div>
+
+                <h2>
+                    ${anime.title}
+                </h2>
+
+                <div class="recommendation-meta">
+                    ${anime.japaneseTitle}
+                    <br>
+                    ${anime.year}
+                    &nbsp; • &nbsp;
+                    ${anime.type}
+                    &nbsp; • &nbsp;
+                    ${anime.episodes} episodes
+                    <br>
+                    ${anime.status}
+                </div>
+
+
+                <div class="recommendation-rating">
+
+                    <i class="fas fa-star"></i>
+
+                    ${anime.rating}
+
+                    <span>
+                        / 10
+                    </span>
+
+                </div>
+
+
+                <p>
+                    ${anime.description}
+                </p>
+
+
+                <div
+                    style="
+                        display:flex;
+                        flex-wrap:wrap;
+                        gap:7px;
+                        margin-bottom:25px;
+                    "
+                >
+
+                    ${anime.genre
+                        .map(
+                            genre => `
+                                <span
+                                    style="
+                                        padding:7px 12px;
+                                        border-radius:50px;
+                                        background:var(--cream);
+                                        font-size:10px;
+                                        font-weight:700;
+                                    "
+                                >
+                                    ${genre}
+                                </span>
+                            `
+                        )
+                        .join("")}
+
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    id="modalFavoriteButton"
+                >
+
+                    <i class="${
+                        favorites.includes(anime.id)
+                            ? "fas"
+                            : "far"
+                    } fa-heart"></i>
+
+                    ${
+                        favorites.includes(anime.id)
+                            ? "Remove Favorite"
+                            : "Add to Favorites"
+                    }
+
+                </button>
+
+            </div>
+
+        </div>
+    `;
+
+
+    modal.classList.add("show");
+
+    document.body.style.overflow = "hidden";
+
+
+    /* CLOSE */
+
+    const closeButton =
+        document.querySelector(
+            "#closeAnimeModal"
+        );
+
+    closeButton.addEventListener(
         "click",
-        openSearchModal
+        closeAnimeModal
     );
 
 
-    closeSearch?.addEventListener(
+    /* FAVORITE */
+
+    const favoriteButton =
+        document.querySelector(
+            "#modalFavoriteButton"
+        );
+
+    favoriteButton.addEventListener(
         "click",
-        closeSearchModal
+        () => {
+
+            toggleFavorite(anime.id);
+
+            openAnimeModal(anime.id);
+        }
     );
 
 
-    searchModal?.addEventListener(
+    /* BACKDROP */
+
+    modal.addEventListener(
         "click",
         event => {
 
             if (
-                event.target === searchModal
+                event.target === modal
             ) {
-
-                closeSearchModal();
-
+                closeAnimeModal();
             }
-
         }
     );
+}
 
 
+/* =========================================================
+   14. CLOSE ANIME MODAL
+   ========================================================= */
 
-    /* =====================================================
-       SEARCH FUNCTION
-    ===================================================== */
+function closeAnimeModal() {
 
-    function searchAnime(query) {
+    const modal =
+        document.querySelector(
+            "#animeDetailsModal"
+        );
 
-        query =
-            query.trim().toLowerCase();
+    if (!modal) return;
 
+    modal.classList.remove("show");
 
-        if (!query) {
+    document.body.style.overflow = "";
 
-            searchResults.style.display =
-                "none";
+    setTimeout(() => {
 
-            searchResults.innerHTML = "";
-
-            return;
-
+        if (modal.parentNode) {
+            modal.remove();
         }
 
-
-        const results =
-            animeData.filter(anime => {
-
-                const title =
-                    anime.title.toLowerCase();
-
-                const genre =
-                    anime.genre.toLowerCase();
-
-                const genres =
-                    anime.genres.join(" ")
-                        .toLowerCase();
+    }, 350);
+}
 
 
-                return (
-                    title.includes(query) ||
-                    genre.includes(query) ||
-                    genres.includes(query)
-                );
+/* =========================================================
+   15. ESC KEY
+   ========================================================= */
 
-            });
+document.addEventListener(
+    "keydown",
+    event => {
 
+        if (event.key === "Escape") {
 
-        displaySearchResults(results);
+            closeAnimeModal();
 
+            closeSearchModal();
+        }
     }
+);
 
 
-    function displaySearchResults(results) {
+/* =========================================================
+   16. SEARCH MODAL
+   ========================================================= */
 
-        searchResults.style.display =
-            "block";
+function openSearchModal() {
 
+    const modal =
+        document.querySelector(
+            ".search-modal"
+        );
 
-        if (!results.length) {
+    if (!modal) return;
 
-            searchResults.innerHTML = `
-                <div
-                    style="
-                        padding: 20px;
-                        text-align: center;
-                        color: var(--gray);
-                    "
-                >
-                    <i
-                        class="fa-solid fa-face-sad-tear"
-                        style="
-                            font-size: 25px;
-                            margin-bottom: 10px;
-                        "
-                    ></i>
+    modal.classList.add("show");
 
-                    <p>
-                        No anime found.
-                    </p>
+    document.body.style.overflow =
+        "hidden";
 
-                    <small>
-                        Try another title or genre.
-                    </small>
-                </div>
-            `;
+    const input =
+        modal.querySelector("input");
 
-            return;
+    if (input) {
 
-        }
-
-
-        searchResults.innerHTML =
-            results.map(anime => `
-
-                <button
-                    class="search-result-item"
-                    data-title="${anime.title}"
-                    style="
-                        width: 100%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
-                        gap: 15px;
-                        padding: 15px;
-                        margin-bottom: 8px;
-                        border-radius: 14px;
-                        background: var(--cream);
-                        text-align: left;
-                    "
-                >
-
-                    <div>
-
-                        <strong>
-                            ${anime.title}
-                        </strong>
-
-                        <div
-                            style="
-                                margin-top: 4px;
-                                color: var(--gray);
-                                font-size: 11px;
-                            "
-                        >
-                            ${anime.genres.join(" • ")}
-                        </div>
-
-                    </div>
-
-                    <span
-                        style="
-                            font-weight: 800;
-                            color: var(--orange-dark);
-                        "
-                    >
-                        ★ ${anime.rating}
-                    </span>
-
-                </button>
-
-            `).join("");
-
-
-        document
-            .querySelectorAll(
-                ".search-result-item"
-            )
-            .forEach(item => {
-
-                item.addEventListener(
-                    "click",
-                    () => {
-
-                        const anime =
-                            animeData.find(
-                                a =>
-                                    a.title ===
-                                    item.dataset.title
-                            );
-
-                        if (anime) {
-
-                            closeSearchModal();
-
-                            showRecommendation(
-                                anime
-                            );
-
-                        }
-
-                    }
-                );
-
-            });
-
+        setTimeout(
+            () => input.focus(),
+            200
+        );
     }
+}
 
 
-    animeSearch?.addEventListener(
-        "input",
-        event => {
+function closeSearchModal() {
 
-            searchAnime(
-                event.target.value
-            );
+    const modal =
+        document.querySelector(
+            ".search-modal"
+        );
 
-        }
+    if (!modal) return;
+
+    modal.classList.remove("show");
+
+    document.body.style.overflow = "";
+}
+
+
+/* =========================================================
+   17. SEARCH BUTTON
+   ========================================================= */
+
+const searchButton =
+    document.querySelector(
+        ".search-button"
     );
 
+if (searchButton) {
 
-
-    /* =====================================================
-       SEARCH SUGGESTIONS
-    ===================================================== */
-
-    document
-        .querySelectorAll(
-            "[data-search]"
-        )
-        .forEach(button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    const query =
-                        button.dataset.search;
-
-                    animeSearch.value =
-                        query;
-
-                    searchAnime(query);
-
-                }
-            );
-
-        });
-
-
-
-    /* =====================================================
-       RECOMMENDATION MODAL
-    ===================================================== */
-
-    function showRecommendation(anime) {
-
-        if (!recommendationModal) return;
-
-
-        recommendationTitle.textContent =
-            anime.title;
-
-        recommendationMeta.textContent =
-            `${anime.genres.join(" • ")} • ${anime.year}`;
-
-        recommendationRating.textContent =
-            anime.rating;
-
-        recommendationDescription.textContent =
-            anime.description;
-
-
-        recommendationModal.classList.add(
-            "show"
-        );
-
-        recommendationModal.setAttribute(
-            "aria-hidden",
-            "false"
-        );
-
-    }
-
-
-    function closeRecommendationModal() {
-
-        if (!recommendationModal) return;
-
-        recommendationModal.classList.remove(
-            "show"
-        );
-
-        recommendationModal.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-    }
-
-
-    closeRecommendation?.addEventListener(
+    searchButton.addEventListener(
         "click",
-        closeRecommendationModal
+        openSearchModal
+    );
+}
+
+
+/* =========================================================
+   18. CLOSE SEARCH
+   ========================================================= */
+
+const closeSearch =
+    document.querySelector(
+        ".close-search"
     );
 
+if (closeSearch) {
 
-    recommendationModal?.addEventListener(
+    closeSearch.addEventListener(
+        "click",
+        closeSearchModal
+    );
+}
+
+
+/* =========================================================
+   19. SEARCH MODAL BACKDROP
+   ========================================================= */
+
+const searchModal =
+    document.querySelector(
+        ".search-modal"
+    );
+
+if (searchModal) {
+
+    searchModal.addEventListener(
         "click",
         event => {
 
             if (
                 event.target ===
-                recommendationModal
-            ) {
-
-                closeRecommendationModal();
-
-            }
-
-        }
-    );
-
-
-
-    /* =====================================================
-       ANIME CARD CLICK
-    ===================================================== */
-
-    document
-        .querySelectorAll(
-            ".anime-card"
-        )
-        .forEach(card => {
-
-            card.addEventListener(
-                "click",
-                event => {
-
-                    if (
-                        event.target.closest(
-                            ".favorite-btn"
-                        )
-                    ) {
-                        return;
-                    }
-
-
-                    const title =
-                        card.dataset.title;
-
-
-                    const anime =
-                        animeData.find(
-                            item =>
-                                item.title ===
-                                title
-                        );
-
-
-                    if (anime) {
-
-                        showRecommendation(
-                            anime
-                        );
-
-                    }
-
-                }
-            );
-
-        });
-
-
-
-    /* =====================================================
-       SURPRISE ME
-    ===================================================== */
-
-    function surpriseMe() {
-
-        const randomIndex =
-            Math.floor(
-                Math.random() *
-                animeData.length
-            );
-
-
-        const randomAnime =
-            animeData[randomIndex];
-
-
-        showRecommendation(
-            randomAnime
-        );
-
-    }
-
-
-    navSurprise?.addEventListener(
-        "click",
-        surpriseMe
-    );
-
-
-    heroSurprise?.addEventListener(
-        "click",
-        surpriseMe
-    );
-
-
-    bigSurprise?.addEventListener(
-        "click",
-        surpriseMe
-    );
-
-
-    recommendationAction?.addEventListener(
-        "click",
-        () => {
-
-            closeRecommendationModal();
-
-            document
-                .getElementById("anime")
-                ?.scrollIntoView({
-                    behavior: "smooth"
-                });
-
-        }
-    );
-
-
-
-    /* =====================================================
-       MOOD FILTER
-    ===================================================== */
-
-    document
-        .querySelectorAll(
-            ".mood-card"
-        )
-        .forEach(button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    const mood =
-                        button.dataset.mood;
-
-
-                    const results =
-                        animeData.filter(
-                            anime =>
-                                anime.mood.includes(
-                                    mood
-                                )
-                        );
-
-
-                    if (results.length) {
-
-                        showRecommendation(
-                            results[
-                                Math.floor(
-                                    Math.random() *
-                                    results.length
-                                )
-                            ]
-                        );
-
-                    } else {
-
-                        showToast(
-                            "No recommendations for this mood yet."
-                        );
-
-                    }
-
-                }
-            );
-
-        });
-
-
-
-    /* =====================================================
-       GENRE FILTER
-    ===================================================== */
-
-    document
-        .querySelectorAll(
-            ".genre-card"
-        )
-        .forEach(button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    const genre =
-                        button.dataset.genre;
-
-
-                    const results =
-                        animeData.filter(
-                            anime =>
-                                anime.genres
-                                    .some(
-                                        item =>
-                                            item.toLowerCase() ===
-                                            genre.toLowerCase()
-                                    )
-                        );
-
-
-                    if (results.length) {
-
-                        showRecommendation(
-                            results[
-                                Math.floor(
-                                    Math.random() *
-                                    results.length
-                                )
-                            ]
-                        );
-
-                    } else {
-
-                        showToast(
-                            `No ${genre} recommendations yet.`
-                        );
-
-                    }
-
-                }
-            );
-
-        });
-
-
-
-    /* =====================================================
-       YEAR FILTER
-    ===================================================== */
-
-    document
-        .querySelectorAll(
-            ".year-item"
-        )
-        .forEach(button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    document
-                        .querySelectorAll(
-                            ".year-item"
-                        )
-                        .forEach(item =>
-                            item.classList.remove(
-                                "active"
-                            )
-                        );
-
-
-                    button.classList.add(
-                        "active"
-                    );
-
-
-                    const yearRange =
-                        button.dataset.year;
-
-
-                    let results = [];
-
-
-                    if (
-                        yearRange ===
-                        "1990s"
-                    ) {
-
-                        results =
-                            animeData.filter(
-                                anime =>
-                                    anime.year >=
-                                    "1990" &&
-                                    anime.year <=
-                                    "1999"
-                            );
-
-                    } else if (
-                        yearRange ===
-                        "2000s"
-                    ) {
-
-                        results =
-                            animeData.filter(
-                                anime =>
-                                    anime.year >=
-                                    "2000" &&
-                                    anime.year <=
-                                    "2009"
-                            );
-
-                    } else if (
-                        yearRange ===
-                        "2010s"
-                    ) {
-
-                        results =
-                            animeData.filter(
-                                anime =>
-                                    anime.year >=
-                                    "2010" &&
-                                    anime.year <=
-                                    "2019"
-                            );
-
-                    } else if (
-                        yearRange ===
-                        "2020s"
-                    ) {
-
-                        results =
-                            animeData.filter(
-                                anime =>
-                                    anime.year >=
-                                    "2020" &&
-                                    anime.year <=
-                                    "2029"
-                            );
-
-                    }
-
-
-                    if (results.length) {
-
-                        showRecommendation(
-                            results[
-                                Math.floor(
-                                    Math.random() *
-                                    results.length
-                                )
-                            ]
-                        );
-
-                    } else {
-
-                        showToast(
-                            `No anime available for the ${yearRange} yet.`
-                        );
-
-                    }
-
-                }
-            );
-
-        });
-
-
-
-    /* =====================================================
-       VIEW ALL ANIME
-    ===================================================== */
-
-    document
-        .getElementById("viewAllAnime")
-        ?.addEventListener(
-            "click",
-            () => {
-
-                document
-                    .querySelectorAll(
-                        ".anime-card"
-                    )
-                    .forEach(card => {
-
-                        card.style.display =
-                            "block";
-
-                    });
-
-
-                document
-                    .getElementById("anime")
-                    ?.scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-
-                showToast(
-                    "Showing all available anime ✨"
-                );
-
-            }
-        );
-
-
-
-    /* =====================================================
-       ESC KEY
-    ===================================================== */
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if (
-                event.key ===
-                "Escape"
+                searchModal
             ) {
 
                 closeSearchModal();
+            }
+        }
+    );
+}
 
-                closeRecommendationModal();
 
+/* =========================================================
+   20. SEARCH INPUT
+   ========================================================= */
+
+if (searchInput) {
+
+    searchInput.addEventListener(
+        "input",
+        filterAnime
+    );
+}
+
+
+/* =========================================================
+   21. FILTER EVENTS
+   ========================================================= */
+
+if (genreFilter) {
+
+    genreFilter.addEventListener(
+        "change",
+        filterAnime
+    );
+}
+
+if (yearFilter) {
+
+    yearFilter.addEventListener(
+        "change",
+        filterAnime
+    );
+}
+
+if (sortFilter) {
+
+    sortFilter.addEventListener(
+        "change",
+        filterAnime
+    );
+}
+
+
+/* =========================================================
+   22. SEARCH SUGGESTIONS
+   ========================================================= */
+
+const suggestionButtons =
+    document.querySelectorAll(
+        ".search-suggestions button"
+    );
+
+suggestionButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            const value =
+                button.textContent.trim();
+
+            if (searchInput) {
+
+                searchInput.value =
+                    value;
+
+                filterAnime();
             }
 
+            closeSearchModal();
         }
+    );
+});
+
+
+/* =========================================================
+   23. RESET FILTERS
+   ========================================================= */
+
+const resetButton =
+    document.querySelector(
+        "#resetFilters"
+    );
+
+if (resetButton) {
+
+    resetButton.addEventListener(
+        "click",
+        () => {
+
+            if (searchInput)
+                searchInput.value = "";
+
+            if (genreFilter)
+                genreFilter.value = "all";
+
+            if (yearFilter)
+                yearFilter.value = "all";
+
+            if (sortFilter)
+                sortFilter.value = "default";
+
+            currentAnimeList =
+                [...animeData];
+
+            renderAnime();
+        }
+    );
+}
+
+
+/* =========================================================
+   24. TOAST NOTIFICATION
+   ========================================================= */
+
+function showToast(message) {
+
+    let toast =
+        document.querySelector(
+            "#nimegamiToast"
+        );
+
+    if (!toast) {
+
+        toast =
+            document.createElement("div");
+
+        toast.id =
+            "nimegamiToast";
+
+        toast.style.cssText = `
+            position: fixed;
+            left: 50%;
+            bottom: 30px;
+            transform: translate(-50%, 20px);
+            z-index: 9999;
+
+            padding: 13px 20px;
+
+            border-radius: 100px;
+
+            background: #252321;
+            color: white;
+
+            font-family: "DM Sans", sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.2);
+
+            opacity: 0;
+
+            transition:
+                opacity 0.3s ease,
+                transform 0.3s ease;
+
+            pointer-events: none;
+        `;
+
+        document.body.appendChild(toast);
+    }
+
+
+    toast.textContent = message;
+
+    toast.style.opacity = "1";
+
+    toast.style.transform =
+        "translate(-50%, 0)";
+
+
+    clearTimeout(
+        window.nimegamiToastTimer
     );
 
 
-
-    /* =====================================================
-       TOAST NOTIFICATION
-    ===================================================== */
-
-    function showToast(message) {
-
-        const existingToast =
-            document.querySelector(
-                ".nimegami-toast"
-            );
-
-
-        existingToast?.remove();
-
-
-        const toast =
-            document.createElement(
-                "div"
-            );
-
-
-        toast.className =
-            "nimegami-toast";
-
-
-        toast.innerHTML = `
-            <i class="fa-solid fa-sparkles"></i>
-            <span>${message}</span>
-        `;
-
-
-        Object.assign(
-            toast.style,
-            {
-                position: "fixed",
-                left: "50%",
-                bottom: "30px",
-                transform:
-                    "translateX(-50%) translateY(20px)",
-                zIndex: "9999",
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-                padding: "13px 20px",
-                borderRadius: "100px",
-                background: "#252321",
-                color: "#ffffff",
-                fontSize: "12px",
-                fontWeight: "700",
-                boxShadow:
-                    "0 15px 40px rgba(0,0,0,0.2)",
-                opacity: "0",
-                transition:
-                    "all 0.35s ease"
-            }
-        );
-
-
-        document.body.appendChild(
-            toast
-        );
-
-
-        requestAnimationFrame(() => {
-
-            toast.style.opacity = "1";
-
-            toast.style.transform =
-                "translateX(-50%) translateY(0)";
-
-        });
-
-
+    window.nimegamiToastTimer =
         setTimeout(() => {
 
             toast.style.opacity = "0";
 
             toast.style.transform =
-                "translateX(-50%) translateY(20px)";
+                "translate(-50%, 20px)";
+
+        }, 2000);
+}
 
 
-            setTimeout(() => {
+/* =========================================================
+   25. YEAR FILTER AUTO GENERATION
+   ========================================================= */
 
-                toast.remove();
+function populateYearFilter() {
 
-            }, 350);
+    if (!yearFilter) return;
 
-        }, 2500);
-
-    }
-
-
-
-    /* =====================================================
-       SMOOTH ANCHOR SCROLL
-    ===================================================== */
-
-    document
-        .querySelectorAll(
-            'a[href^="#"]'
-        )
-        .forEach(link => {
-
-            link.addEventListener(
-                "click",
-                event => {
-
-                    const targetId =
-                        link.getAttribute(
-                            "href"
-                        );
+    const years =
+        [...new Set(
+            animeData.map(
+                anime => anime.year
+            )
+        )].sort(
+            (a, b) => b - a
+        );
 
 
-                    if (
-                        targetId === "#"
-                    ) {
-                        return;
-                    }
+    /*
+       Only generate options if
+       the select doesn't already
+       contain year options.
+    */
 
+    if (yearFilter.options.length <= 1) {
 
-                    const target =
-                        document.querySelector(
-                            targetId
-                        );
+        years.forEach(year => {
 
+            const option =
+                document.createElement(
+                    "option"
+                );
 
-                    if (target) {
+            option.value = year;
 
-                        event.preventDefault();
+            option.textContent = year;
 
-                        target.scrollIntoView({
-                            behavior: "smooth"
-                        });
-
-                    }
-
-                }
+            yearFilter.appendChild(
+                option
             );
-
         });
+    }
+}
 
 
+/* =========================================================
+   26. GENRE FILTER AUTO GENERATION
+   ========================================================= */
 
-    /* =====================================================
-       PAGE LOAD
-    ===================================================== */
+function populateGenreFilter() {
+
+    if (!genreFilter) return;
+
+    const genres =
+        [
+            ...new Set(
+                animeData.flatMap(
+                    anime => anime.genre
+                )
+            )
+        ].sort();
+
+
+    if (genreFilter.options.length <= 1) {
+
+        genres.forEach(genre => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value = genre;
+
+            option.textContent = genre;
+
+            genreFilter.appendChild(
+                option
+            );
+        });
+    }
+}
+
+
+/* =========================================================
+   27. INITIALIZE
+   ========================================================= */
+
+function initializeExplorePage() {
+
+    populateYearFilter();
+
+    populateGenreFilter();
+
+    currentAnimeList =
+        [...animeData];
+
+    renderAnime();
 
     console.log(
-        "✨ NIMEGAMI Explore initialized!"
+        "🌸 Nimegami Explore loaded!"
     );
 
     console.log(
         `📚 ${animeData.length} anime loaded.`
     );
+}
 
-});
+
+/* =========================================================
+   28. DOM READY
+   ========================================================= */
+
+if (
+    document.readyState ===
+    "loading"
+) {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        initializeExplorePage
+    );
+
+} else {
+
+    initializeExplorePage();
+}
