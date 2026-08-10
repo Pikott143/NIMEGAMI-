@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login — Nimegami</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <style>
+
+        /* =====================================================
+           LOGIN PAGE
+        ===================================================== */
+
+        .login-page {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 40px 20px;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        /* =====================================================
+           BACKGROUND GLOW
+        ===================================================== */
+
+        .login-page::before {
+            content: "";
+
+            position: absolute;
+
+            width: 600px;
+            height: 600px;
+
+            top: -250px;
+            right: -200px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(243,154,85,0.22),
+                    transparent 70%
+                );
+
+            pointer-events: none;
+        }
+
+
+        .login-page::after {
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            bottom: -250px;
+            left: -200px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(231,121,49,0.16),
+                    transparent 70%
+                );
+
+            pointer-events: none;
+        }
+
+
+        /* =====================================================
+           MAIN CARD
+        ===================================================== */
+
+        .login-container {
+
+            width: min(1050px, 100%);
+
+            min-height: 620px;
+
+            display: grid;
+
+            grid-template-columns:
+                0.9fr
+                1.1fr;
+
+            position: relative;
+
+            z-index: 5;
+
+            overflow: hidden;
+
+            border-radius: 36px;
+
+            background:
+                rgba(255,250,245,0.78);
+
+            border:
+                1px solid rgba(255,255,255,0.75);
+
+            backdrop-filter: blur(25px);
+
+            box-shadow:
+                0 35px 100px
+                rgba(81,53,35,0.16);
+        }
+
+
+        /* =====================================================
+           LEFT ART
+        ===================================================== */
+
+        .login-art {
+
+            position: relative;
+
+            min-height: 620px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #e98748,
+                    #5c3930
+                );
+
+            color: white;
+        }
+
+
+        /* Decorative circle */
+
+        .login-art::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 420px;
+            height: 420px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.2);
+
+            box-shadow:
+                0 0 0 55px
+                rgba(255,255,255,0.035),
+
+                0 0 0 110px
+                rgba(255,255,255,0.025),
+
+                0 0 0 165px
+                rgba(255,255,255,0.018);
+
+            animation:
+                loginFloat 8s ease-in-out infinite;
+        }
+
+
+        @keyframes loginFloat {
+
+            0%,
+            100% {
+                transform:
+                    scale(1)
+                    rotate(0deg);
+            }
+
+            50% {
+                transform:
+                    scale(1.05)
+                    rotate(4deg);
+            }
+        }
+
+
+        /* =====================================================
+           STARS
+        ===================================================== */
+
+        .login-star {
+
+            position: absolute;
+
+            color:
+                rgba(255,255,255,0.45);
+
+            animation:
+                loginStarFloat
+                4s ease-in-out infinite;
+        }
+
+
+        .login-star.one {
+
+            top: 15%;
+            left: 15%;
+
+            font-size: 28px;
+        }
+
+
+        .login-star.two {
+
+            top: 30%;
+            right: 13%;
+
+            font-size: 18px;
+
+            animation-delay: 1s;
+        }
+
+
+        .login-star.three {
+
+            bottom: 18%;
+            left: 20%;
+
+            font-size: 20px;
+
+            animation-delay: 2s;
+        }
+
+
+        @keyframes loginStarFloat {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0);
+
+                opacity: 0.4;
+            }
+
+            50% {
+                transform:
+                    translateY(-12px);
+
+                opacity: 0.9;
+            }
+        }
+
+
+        /* =====================================================
+           LEFT CONTENT
+        ===================================================== */
+
+        .login-art-content {
+
+            width: 80%;
+
+            position: relative;
+
+            z-index: 3;
+
+            text-align: center;
+        }
+
+
+        /* LOGO */
+
+        .login-logo {
+
+            display: inline-flex;
+
+            flex-direction: column;
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size: 42px;
+
+            font-weight: 800;
+
+            line-height: 0.75;
+        }
+
+
+        .login-logo span {
+            color: white;
+        }
+
+
+        .login-logo strong {
+            color: #ffd09d;
+        }
+
+
+        /* TITLE */
+
+        .login-art-content h1 {
+
+            margin-top: 45px;
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size:
+                clamp(40px,5vw,65px);
+
+            line-height: 0.95;
+
+            letter-spacing: -2px;
+        }
+
+
+        .login-art-content h1 span {
+
+            display: block;
+
+            color: #ffd09d;
+
+            font-style: italic;
+        }
+
+
+        /* DESCRIPTION */
+
+        .login-art-content p {
+
+            max-width: 350px;
+
+            margin:
+                25px auto 0;
+
+            color:
+                rgba(255,255,255,0.72);
+
+            font-size: 13px;
+
+            line-height: 1.8;
+        }
+
+
+        /* SYMBOL */
+
+        .login-symbol {
+
+            margin-top: 45px;
+
+            font-size: 90px;
+
+            color:
+                rgba(255,255,255,0.12);
+
+            animation:
+                loginSymbolFloat
+                6s ease-in-out infinite;
+        }
+
+
+        @keyframes loginSymbolFloat {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+            }
+
+            50% {
+                transform:
+                    translateY(-10px)
+                    rotate(8deg);
+            }
+        }
+
+
+        /* =====================================================
+           RIGHT FORM
+        ===================================================== */
+
+        .login-form-side {
+
+            padding:
+                55px 65px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            overflow-y: auto;
+        }
+
+
+        /* EYEBROW */
+
+        .login-eyebrow {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color:
+                var(--orange-dark);
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+
+        .login-eyebrow span {
+
+            width: 25px;
+            height: 2px;
+
+            background:
+                var(--orange);
+        }
+
+
+        /* HEADING */
+
+        .login-form-side h2 {
+
+            margin-top: 12px;
+
+            font-family:
+                "Playfair Display",
+                serif;
+
+            font-size:
+                clamp(40px,4vw,58px);
+
+            line-height: 0.95;
+
+            letter-spacing: -2px;
+        }
+
+
+        .login-subtitle {
+
+            margin-top: 15px;
+
+            color:
+                var(--gray);
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .login-form {
+
+            margin-top: 32px;
+        }
+
+
+        .login-form-group {
+
+            margin-bottom: 18px;
+        }
+
+
+        .login-form-group label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+
+        .login-input-wrapper {
+
+            position: relative;
+        }
+
+
+        .login-input-wrapper > i {
+
+            position: absolute;
+
+            left: 17px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            color:
+                var(--gray-light);
+
+            font-size: 13px;
+
+            pointer-events: none;
+        }
+
+
+        .login-input {
+
+            width: 100%;
+
+            height: 52px;
+
+            padding:
+                0 45px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 15px;
+
+            outline: none;
+
+            background:
+                rgba(255,255,255,0.7);
+
+            color:
+                var(--black);
+
+            font-size: 13px;
+
+            transition:
+                var(--transition);
+        }
+
+
+        .login-input::placeholder {
+
+            color:
+                var(--gray-light);
+        }
+
+
+        .login-input:focus {
+
+            background:
+                var(--white);
+
+            border-color:
+                var(--orange);
+
+            box-shadow:
+                0 0 0 4px
+                rgba(243,154,85,0.10);
+        }
+
+
+        /* =====================================================
+           PASSWORD BUTTON
+        ===================================================== */
+
+        .login-toggle-password {
+
+            position: absolute;
+
+            right: 15px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            background:
+                transparent;
+
+            color:
+                var(--gray);
+
+            font-size: 13px;
+        }
+
+
+        .login-toggle-password:hover {
+
+            color:
+                var(--orange-dark);
+        }
+
+
+        /* =====================================================
+           OPTIONS
+        ===================================================== */
+
+        .login-options {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-top: 5px;
+
+            font-size: 10px;
+        }
+
+
+        .remember-me {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color:
+                var(--gray);
+
+            cursor: pointer;
+        }
+
+
+        .remember-me input {
+
+            accent-color:
+                var(--orange);
+
+            cursor: pointer;
+        }
+
+
+        .forgot-password {
+
+            color:
+                var(--orange-dark);
+
+            font-weight: 700;
+        }
+
+
+        .forgot-password:hover {
+
+            text-decoration: underline;
+        }
+
+
+        /* =====================================================
+           LOGIN BUTTON
+        ===================================================== */
+
+        .login-button {
+
+            width: 100%;
+
+            height: 52px;
+
+            margin-top: 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            border-radius: 100px;
+
+            background:
+                var(--orange);
+
+            color:
+                var(--white);
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 12px 30px
+                rgba(243,154,85,0.25);
+
+            transition:
+                var(--transition);
+        }
+
+
+        .login-button:hover {
+
+            background:
+                var(--orange-dark);
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 18px 35px
+                rgba(243,154,85,0.32);
+        }
+
+
+        .login-button:active {
+
+            transform:
+                translateY(0);
+        }
+
+
+        /* =====================================================
+           MESSAGE
+        ===================================================== */
+
+        .login-message {
+
+            display: none;
+
+            margin-bottom: 15px;
+
+            padding:
+                11px 14px;
+
+            border-radius: 12px;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+        }
+
+
+        .login-message.show {
+            display: block;
+        }
+
+
+        .login-message.error {
+
+            background:
+                rgba(220,70,70,0.08);
+
+            color:
+                #b54444;
+
+            border:
+                1px solid
+                rgba(220,70,70,0.12);
+        }
+
+
+        .login-message.success {
+
+            background:
+                rgba(60,160,100,0.08);
+
+            color:
+                #39865a;
+
+            border:
+                1px solid
+                rgba(60,160,100,0.12);
+        }
+
+
+        /* =====================================================
+           REGISTER LINK
+        ===================================================== */
+
+        .register-link {
+
+            margin-top: 25px;
+
+            text-align: center;
+
+            color:
+                var(--gray);
+
+            font-size: 11px;
+        }
+
+
+        .register-link a {
+
+            color:
+                var(--orange-dark);
+
+            font-weight: 800;
+        }
+
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =====================================================
+           BACK TO EXPLORE
+        ===================================================== */
+
+        .login-back {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            margin-top: 18px;
+
+            color:
+                var(--gray);
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            transition:
+                var(--transition);
+        }
+
+
+        .login-back:hover {
+
+            color:
+                var(--black);
+
+            transform:
+                translateX(-3px);
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 850px) {
+
+            .login-container {
+
+                grid-template-columns: 1fr;
+
+                max-width: 600px;
+
+                min-height: auto;
+            }
+
+
+            .login-art {
+
+                min-height: 270px;
+
+                padding:
+                    45px 30px;
+            }
+
+
+            .login-art::before {
+
+                width: 250px;
+                height: 250px;
+            }
+
+
+            .login-art-content h1 {
+
+                margin-top: 25px;
+
+                font-size: 42px;
+            }
+
+
+            .login-art-content p {
+
+                margin-top: 15px;
+            }
+
+
+            .login-symbol {
+                display: none;
+            }
+
+
+            .login-form-side {
+
+                padding:
+                    45px 40px;
+            }
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 550px) {
+
+            .login-page {
+                padding: 15px;
+            }
+
+
+            .login-container {
+                border-radius: 25px;
+            }
+
+
+            .login-art {
+
+                min-height: 230px;
+
+                padding:
+                    35px 20px;
+            }
+
+
+            .login-logo {
+                font-size: 32px;
+            }
+
+
+            .login-art-content h1 {
+
+                margin-top: 22px;
+
+                font-size: 34px;
+            }
+
+
+            .login-art-content p {
+                display: none;
+            }
+
+
+            .login-form-side {
+
+                padding:
+                    35px 25px;
+            }
+
+
+            .login-form-side h2 {
+                font-size: 38px;
+            }
+
+
+            .login-subtitle {
+                font-size: 12px;
+            }
+
+
+            .login-input {
+                height: 48px;
+            }
+
+
+            .login-options {
+                font-size: 9px;
+            }
+        }
+
+
+        /* =====================================================
+           VERY SMALL PHONE
+        ===================================================== */
+
+        @media (max-width: 380px) {
+
+            .login-form-side {
+
+                padding:
+                    30px 20px;
+            }
+
+
+            .login-form-side h2 {
+                font-size: 34px;
+            }
+
+
+            .login-art {
+                min-height: 210px;
+            }
+
+
+            .login-art-content h1 {
+                font-size: 30px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         LOGIN PAGE
+    ===================================================== -->
+
+    <main class="login-page">
+
+
+        <div class="login-container">
+
+
+            <!-- =================================================
+                 LEFT ART
+            ================================================= -->
+
+            <section class="login-art">
+
+
+                <!-- Decorative stars -->
+
+                <span class="login-star one">✦</span>
+
+                <span class="login-star two">✧</span>
+
+                <span class="login-star three">✦</span>
+
+
+                <div class="login-art-content">
+
+
+                    <!-- Logo -->
+
+                    <div class="login-logo">
+
+                        <span>nime</span>
+
+                        <strong>gami.</strong>
+
+                    </div>
+
+
+                    <h1>
+
+                        Welcome
+                        <span>back.</span>
+
+                    </h1>
+
+
+                    <p>
+
+                        Your anime journey is waiting.
+                        Continue exploring stories,
+                        characters, and worlds you'll love.
+
+                    </p>
+
+
+                    <div class="login-symbol">
+                        ✦
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 LOGIN FORM
+            ================================================= -->
+
+            <section class="login-form-side">
+
+
+                <div class="login-eyebrow">
+
+                    <span></span>
+
+                    Welcome back
+
+                </div>
+
+
+                <h2>
+
+                    Log in to
+                    Nimegami.
+
+                </h2>
+
+
+                <p class="login-subtitle">
+
+                    Sign in to access your favorites
+                    and continue discovering anime.
+
+                </p>
+
+
+                <!-- Message -->
+
+                <div
+                    class="login-message"
+                    id="loginMessage"
+                ></div>
+
+
+                <!-- FORM -->
+
+                <form
+                    class="login-form"
+                    id="loginForm"
+                >
+
+
+                    <!-- EMAIL -->
+
+                    <div class="login-form-group">
+
+                        <label for="loginEmail">
+                            Email Address
+                        </label>
+
+
+                        <div class="login-input-wrapper">
+
+                            <i
+                                class="fa-regular fa-envelope"
+                            ></i>
+
+
+                            <input
+                                type="email"
+                                id="loginEmail"
+                                class="login-input"
+                                placeholder="you@example.com"
+                                autocomplete="email"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="login-form-group">
+
+                        <label for="loginPassword">
+                            Password
+                        </label>
+
+
+                        <div class="login-input-wrapper">
+
+                            <i
+                                class="fa-solid fa-lock"
+                            ></i>
+
+
+                            <input
+                                type="password"
+                                id="loginPassword"
+                                class="login-input"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+
+                            <button
+                                type="button"
+                                class="login-toggle-password"
+                                id="toggleLoginPassword"
+                                aria-label="Show password"
+                            >
+
+                                <i
+                                    class="fa-regular fa-eye"
+                                ></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- OPTIONS -->
+
+                    <div class="login-options">
+
+
+                        <label class="remember-me">
+
+                            <input
+                                type="checkbox"
+                                id="rememberMe"
+                            >
+
+                            <span>
+                                Remember me
+                            </span>
+
+                        </label>
+
+
+                        <a
+                            href="#"
+                            class="forgot-password"
+                            id="forgotPassword"
+                        >
+                            Forgot password?
+                        </a>
+
+
+                    </div>
+
+
+                    <!-- LOGIN -->
+
+                    <button
+                        type="submit"
+                        class="login-button"
+                    >
+
+                        <i
+                            class="fa-solid fa-right-to-bracket"
+                        ></i>
+
+                        Log In
+
+                    </button>
+
+
+                </form>
+
+
+                <!-- REGISTER -->
+
+                <p class="register-link">
+
+                    Don't have an account?
+
+                    <a href="register.html">
+                        Create one
+                    </a>
+
+                </p>
+
+
+                <!-- BACK -->
+
+                <a
+                    href="explore.html"
+                    class="login-back"
+                >
+
+                    <i
+                        class="fa-solid fa-arrow-left"
+                    ></i>
+
+                    Back to Explore Anime
+
+                </a>
+
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- LOGIN JS -->
+
+    <script src="js/login.js"></script>
+
+</body>
+
+</html>
